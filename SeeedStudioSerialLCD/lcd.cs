@@ -186,23 +186,5 @@ namespace SerialLCD
             _lcd.Write(SLCD_CHAR_HEADER, 0, 1);
             _lcd.Write(b, 0, b.Length);
         }
-
-/*
-        public void Write(byte[] b)
-        {
-            _lcd.Write(b, 0, b.Length);
-        }
-
-        public void MoveCur(int i)
-        {
-            this.Write(blinkon);
-
-            if (i > 15) i += 48;
-            byte locByte = (byte)(128 + i);
-            byte[] moveto = { 0xFE, locByte };
-            Debug.Print("MoveTo - " + moveto[0].ToString() + " - " + moveto[1].ToString() + " - locByte " + locByte.ToString());
-            this.Write(moveto);
-         }
-*/
     }
 }
