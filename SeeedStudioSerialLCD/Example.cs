@@ -18,11 +18,15 @@ namespace SerialLCD
         {
             while (true)
             {
-                mylcd.SetCursor(2, 0); // column, row
                 mylcd.backlight();
+                mylcd.SetCursor(0, 0); // column, row
                 byte[] message = System.Text.Encoding.UTF8.GetBytes("Hello World");
                 mylcd.print(message);
-                Thread.Sleep(1000);
+                mylcd.SetCursor(15, 1); // column, row
+                //mylcd.rightToLeft();
+                mylcd.scrollDisplayLeft();
+                mylcd.print(message);
+                Thread.Sleep(500);
             }
         }
 

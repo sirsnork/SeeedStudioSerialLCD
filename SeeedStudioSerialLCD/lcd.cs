@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using System.IO.Ports;
 using System.Threading;
 
-namespace SerialLCD
+namespace CellularRemoteControl
 {
     class LCD
     {
@@ -183,6 +183,7 @@ namespace SerialLCD
         // Print Command
         public void print(byte[] b)
         {
+            _lcd.DiscardInBuffer();
             _lcd.Write(SLCD_CHAR_HEADER, 0, 1);
             _lcd.Write(b, 0, b.Length);
         }
