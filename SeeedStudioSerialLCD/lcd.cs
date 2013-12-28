@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using System.IO.Ports;
 using System.Threading;
 
-namespace CellularRemoteControl
+namespace SerialLCD
 {
     class LCD
     {
@@ -49,27 +49,33 @@ namespace CellularRemoteControl
             Thread.Sleep(2);
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
             _lcd.Write(SLCD_POWER_ON, 0, 1);
-            Thread.Sleep(1);
+            Thread.Sleep(2);
             _lcd.Write(SLCD_INIT_ACK, 0, 1);
+            Thread.Sleep(2);
         }
 
         public void Clear()
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0 , 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_CLEAR_DISPLAY, 0, 1);
+            Thread.Sleep(2);
         }
         // Return to home(top-left corner of LCD)
         public void Home()
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0 , 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_RETURN_HOME, 0, 1);
             Thread.Sleep(2);
         }
         // Set Cursor to (Column,Row) Position
         public void SetCursor(byte column, byte row)
         {
-            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1); 
+            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_CURSOR_HEADER, 0 , 1); //cursor header command
+            Thread.Sleep(2);
             byte[] coords = new byte[] { column, row };
             _lcd.Write(coords, 0, 1);
             _lcd.Write(coords, 1, 1);
@@ -79,113 +85,147 @@ namespace CellularRemoteControl
         public void noDisplay() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_DISPLAY_OFF, 0, 1);    
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_DISPLAY_OFF, 0, 1);
+            Thread.Sleep(2);
         }      
 
         // Switch the display on
         public void display()
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_DISPLAY_ON, 0, 1);    
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_DISPLAY_ON, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Switch the underline cursor off
         public void noCursor() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_CURSOR_OFF, 0, 1);     
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_CURSOR_OFF, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Switch the underline cursor on
         public void cursor() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_CURSOR_ON, 0, 1);     
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_CURSOR_ON, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Switch off the blinking cursor
         public void noBlink() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_BLINK_OFF, 0, 1);     
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_BLINK_OFF, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Switch on the blinking cursor
         public void blink() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
-            _lcd.Write(SLCD_BLINK_ON, 0, 1);     
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_BLINK_ON, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Scroll the display left without changing the RAM
         public void scrollDisplayLeft() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_SCROLL_LEFT, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Scroll the display right without changing the RAM
         public void scrollDisplayRight() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_SCROLL_RIGHT, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Set the text flow "Left to Right"
         public void leftToRight() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_LEFT_TO_RIGHT, 0, 1);
+            Thread.Sleep(2);
         }
 
         // Set the text flow "Right to Left"
         public void rightToLeft() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_RIGHT_TO_LEFT, 0, 1);
+            Thread.Sleep(2);
         }
 
         // This will 'right justify' text from the cursor
         public void autoscroll() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_AUTO_SCROLL, 0, 1);
+            Thread.Sleep(2);
         }
 
         // This will 'left justify' text from the cursor
         public void noAutoscroll() 
         {
             _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(SLCD_NO_AUTO_SCROLL, 0, 1);
+            Thread.Sleep(2);
         }
         public void Power()
         {
-            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);   
-            _lcd.Write(SLCD_POWER_ON, 0, 1); 
+            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_POWER_ON, 0, 1);
+            Thread.Sleep(2);
         }
         public void noPower()
         {
-            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);   
-            _lcd.Write(SLCD_POWER_OFF, 0, 1); 
+            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(2);
+            _lcd.Write(SLCD_POWER_OFF, 0, 1);
+            Thread.Sleep(2);
         }
         //Turn off the backlight
         public void noBacklight()
         {
-            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);   
-            _lcd.Write(SLCD_BACKLIGHT_OFF, 0, 1);   
+            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_BACKLIGHT_OFF, 0, 1);
+            Thread.Sleep(2);
         }
         //Turn on the back light
         public void backlight()
         {
-            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);   
-            _lcd.Write(SLCD_BACKLIGHT_ON, 0, 1);   
+            _lcd.Write(SLCD_CONTROL_HEADER, 0, 1);
+            Thread.Sleep(1);
+            _lcd.Write(SLCD_BACKLIGHT_ON, 0, 1);
+            Thread.Sleep(2);
         }
         // Print Command
         public void print(byte[] b)
         {
             _lcd.DiscardInBuffer();
             _lcd.Write(SLCD_CHAR_HEADER, 0, 1);
+            Thread.Sleep(1);
             _lcd.Write(b, 0, b.Length);
+            Thread.Sleep(2);
         }
     }
 }
