@@ -1,9 +1,7 @@
-﻿using System;
-using Microsoft.SPOT;
-using System.IO.Ports;
+﻿using System.IO.Ports;
 using System.Threading;
 
-namespace SerialLCD
+namespace SeeedStudio.Grove.SerialLCD
 {
     class LCD
     {
